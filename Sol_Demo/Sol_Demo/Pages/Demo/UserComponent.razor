@@ -1,0 +1,41 @@
+﻿@page "/user"
+
+<EditForm Model="this.UserM" Context="formContext">
+    <DataAnnotationsValidator />
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="txtFullName">Full Name:</label>
+                    <InputText id="txtFullName" @bind-Value="UserM.FullName" class="form-control"></InputText>
+                    <ValidationMessage For="@(()=> UserM.FullName)"></ValidationMessage>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="txtEmailId">Email Id:</label>
+                    <InputText id="txtEmailId" @bind-Value="UserM.EmailId" class="form-control"></InputText>
+                    <ValidationMessage For="@(()=> UserM.EmailId)"></ValidationMessage>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <button type="submit" class="btn btn-dark" @onclick="@(()=> this.OnSubmit(formContext))">Submit</button>
+                <button type="submit" class="btn btn-danger" @onclick="@(()=> this.OnDelete(formContext))">Delete</button>
+                <button type="submit" class="btn btn-light" @onclick="this.OnCancel">Cancel</button>
+            </div>
+        </div>
+        @if (this.IsDisplay == true)
+        {
+            <div class="row m-3">
+                <div class="col-12">
+                    <span>First Name : @this.UserM.FullName</span>
+                    <span>Email Id : @this.UserM.EmailId</span>
+                </div>
+            </div>
+        }
+    </div>
+</EditForm>
